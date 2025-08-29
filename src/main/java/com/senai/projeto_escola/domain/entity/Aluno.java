@@ -1,5 +1,6 @@
 package com.senai.projeto_escola.domain.entity;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -9,6 +10,8 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 public class Aluno extends Usuario{
+    @EmbeddedId
+    private String id;
     private Curso curso;
     @NotBlank(message = "titulo não pode ser vazio")
     private String turma;

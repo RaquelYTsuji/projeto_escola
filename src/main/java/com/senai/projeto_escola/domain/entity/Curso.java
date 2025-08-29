@@ -18,4 +18,5 @@ public class Curso {
     private String titulo;
     @NotNull(message = "carga_horaria não pode ser nulo")
     private Integer carga_horaria;
+
 }
