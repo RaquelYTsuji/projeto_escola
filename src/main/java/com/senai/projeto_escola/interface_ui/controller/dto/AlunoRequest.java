@@ -5,7 +5,7 @@ import com.senai.projeto_escola.domain.entity.Curso;
 public record AlunoRequest(
         String nome,
         String cpf,
-        Curso curso,
+        String curso,
         String turma
 )
 {}

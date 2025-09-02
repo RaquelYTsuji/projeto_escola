@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@MappedSuperclass
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

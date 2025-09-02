@@ -1,11 +1,11 @@
 package com.senai.projeto_escola.interface_ui.controller.dto;
 
-import com.senai.projeto_escola.domain.entity.Curso;
+import java.util.List;
 
 public record ProfessorRequest(
         String nome,
         String cpf,
-        String turmas,
-        String disciplinas
+        List<String> turmas,
+        List<String> disciplinas
 )
 {}

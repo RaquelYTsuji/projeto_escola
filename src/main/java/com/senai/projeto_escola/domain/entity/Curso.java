@@ -1,15 +1,17 @@
 package com.senai.projeto_escola.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,5 +20,11 @@ public class Curso {
     private String titulo;
     @NotNull(message = "carga_horaria não pode ser nulo")
     private Integer carga_horaria;
+    @MapsId("alunoId")
+    private List<String> alunoId = new ArrayList<>();
 
+    public Curso(String titulo, Integer carga_horaria) {
+        this.titulo = titulo;
+        this.carga_horaria = carga_horaria;
+    }
 }

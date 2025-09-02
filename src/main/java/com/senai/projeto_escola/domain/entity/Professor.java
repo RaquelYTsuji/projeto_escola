@@ -1,24 +1,31 @@
 package com.senai.projeto_escola.domain.entity;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
 @Data
+@Entity
+@NoArgsConstructor
 public class Professor extends Usuario{
-    @EmbeddedId
-    private String id;
-    @NotBlank(message = "turmas não pode ser vazio")
-    private String turmas;
-    @NotBlank(message = "disciplinas não pode ser vazio")
-    private String disciplinas;
+    @ElementCollection
+    @CollectionTable(name = "professor_turmas",
+            joinColumns = @JoinColumn(name = "professor_id"))
+    @Column(name = "turmas")
+    private List<String> turmas;
 
-    public Professor(String nome, String cpf, String turmas, String disciplinas) {
-        super(nome, cpf, UsuarioTipo.aluno);
+    @ElementCollection
+    @CollectionTable(name = "professor_disciplinas",
+            joinColumns = @JoinColumn(name = "professor_id"))
+    @Column(name = "disciplinas")
+    private List<String> disciplinas;
+
+    public Professor(String nome, String cpf, List<String> turmas, List<String> disciplinas) {
+        super(nome, cpf, UsuarioTipo.professor);
         this.turmas = turmas;
         this.disciplinas = disciplinas;
     }

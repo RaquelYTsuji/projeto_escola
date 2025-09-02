@@ -1,21 +1,21 @@
 package com.senai.projeto_escola.domain.entity;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
 @Data
+@Entity
+@NoArgsConstructor
 public class Aluno extends Usuario{
-    @EmbeddedId
-    private String id;
+    @ManyToOne
+    @JoinColumn(name = "cursoId")
     private Curso curso;
     @NotBlank(message = "titulo não pode ser vazio")
     private String turma;
-
 
     public Aluno(String nome, String cpf, Curso curso, String turma) {
         super(nome, cpf, UsuarioTipo.aluno);

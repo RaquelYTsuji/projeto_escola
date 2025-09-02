@@ -2,7 +2,6 @@ package com.senai.projeto_escola.interface_ui.controller;
 
 import com.senai.projeto_escola.application.service.ProfessorService;
 import com.senai.projeto_escola.domain.entity.Professor;
-import com.senai.projeto_escola.domain.repository.ProfessorRepository;
 import com.senai.projeto_escola.interface_ui.controller.dto.ProfessorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +12,6 @@ import java.util.List;
 @RequestMapping("/professores")
 public class ProfessorController {
     @Autowired
-    private ProfessorRepository professorRepository;
-
-    @Autowired
     private ProfessorService professorService;
 
     @PostMapping
@@ -24,14 +20,13 @@ public class ProfessorController {
     }
 
     @GetMapping
-    public List<Professor> getAllProfessoress(){
-        return professorRepository.findAll();
+    public List<Professor> getAllProfessores(){
+        return professorService.getAll();
     }
 
     @GetMapping("/{id}")
     public Professor getAllProfessoress(@PathVariable String id){
-        return professorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
+        return professorService.getProfessor(id);
     }
 
     @PutMapping("/{id}")
@@ -41,6 +36,6 @@ public class ProfessorController {
 
     @DeleteMapping("/{id}")
     public void deleteProfessor(@PathVariable String id){
-        professorRepository.deleteById(id);
+        professorService.delete(id);
     }
 }
