@@ -1,8 +1,9 @@
 package com.senai.projeto_escola.interface_ui.controller;
 
+import com.senai.projeto_escola.application.dto.ProfessorResponse;
 import com.senai.projeto_escola.application.service.ProfessorService;
 import com.senai.projeto_escola.domain.entity.Professor;
-import com.senai.projeto_escola.interface_ui.controller.dto.ProfessorRequest;
+import com.senai.projeto_escola.application.dto.ProfessorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,22 +16,22 @@ public class ProfessorController {
     private ProfessorService professorService;
 
     @PostMapping
-    public Professor createProfessor(@RequestBody ProfessorRequest professorRequest){
+    public ProfessorResponse createProfessor(@RequestBody ProfessorRequest professorRequest){
         return professorService.save(professorRequest);
     }
 
     @GetMapping
-    public List<Professor> getAllProfessores(){
+    public List<ProfessorResponse> getAllProfessores(){
         return professorService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Professor getAllProfessoress(@PathVariable String id){
+    public ProfessorResponse getAllProfessoress(@PathVariable String id){
         return professorService.getProfessor(id);
     }
 
     @PutMapping("/{id}")
-    public Professor updateProfessor(@PathVariable String id, @RequestBody ProfessorRequest professorRequest){
+    public ProfessorResponse updateProfessor(@PathVariable String id, @RequestBody ProfessorRequest professorRequest){
         return professorService.update(id, professorRequest);
     }
 

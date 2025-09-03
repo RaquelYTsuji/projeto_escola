@@ -1,6 +1,4 @@
-package com.senai.projeto_escola.interface_ui.controller.dto;
-
-import com.senai.projeto_escola.domain.entity.Curso;
+package com.senai.projeto_escola.application.dto;
 
 public record AlunoRequest(
         String nome,

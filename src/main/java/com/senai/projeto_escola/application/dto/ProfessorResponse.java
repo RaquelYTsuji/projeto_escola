@@ -1,8 +1,9 @@
-package com.senai.projeto_escola.interface_ui.controller.dto;
+package com.senai.projeto_escola.application.dto;
 
 import java.util.List;
 
-public record ProfessorRequest(
+public record ProfessorResponse(
+        String id,
         String nome,
         String cpf,
         List<String> turmas,

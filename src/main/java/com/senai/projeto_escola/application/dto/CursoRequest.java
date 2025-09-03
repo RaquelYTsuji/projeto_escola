@@ -1,4 +1,4 @@
-package com.senai.projeto_escola.interface_ui.controller.dto;
+package com.senai.projeto_escola.application.dto;
 
 public record CursoRequest(
         String titulo,

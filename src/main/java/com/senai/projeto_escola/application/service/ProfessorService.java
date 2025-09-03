@@ -1,8 +1,10 @@
 package com.senai.projeto_escola.application.service;
 
+import com.senai.projeto_escola.application.dto.ProfessorMapper;
+import com.senai.projeto_escola.application.dto.ProfessorResponse;
 import com.senai.projeto_escola.domain.entity.Professor;
 import com.senai.projeto_escola.domain.repository.ProfessorRepository;
-import com.senai.projeto_escola.interface_ui.controller.dto.ProfessorRequest;
+import com.senai.projeto_escola.application.dto.ProfessorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,33 +15,40 @@ public class ProfessorService {
     @Autowired
     private ProfessorRepository professorRepository;
 
-    public Professor save(ProfessorRequest professorRequest){
+    @Autowired
+    private ProfessorMapper professorMapper;
+
+    public ProfessorResponse save(ProfessorRequest professorRequest){
         Professor professor = new Professor(
                 professorRequest.nome(),
                 professorRequest.cpf(),
                 professorRequest.turmas(),
                 professorRequest.disciplinas()
         );
-        return professorRepository.save(professor);
+        professorRepository.save(professor);
+        return professorMapper.to(professor);
     }
 
-    public List<Professor> getAll(){
-        return professorRepository.findAll();
+    public List<ProfessorResponse> getAll(){
+        List<Professor> professores = professorRepository.findAll();
+        return professorMapper.to(professores);
     }
 
-    public Professor getProfessor(String id){
-        return professorRepository.findById(id)
+    public ProfessorResponse getProfessor(String id){
+        Professor professor = professorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
+        return professorMapper.to(professor);
     }
 
-    public Professor update(String id, ProfessorRequest professorRequest){
+    public ProfessorResponse update(String id, ProfessorRequest professorRequest){
         if(!professorRepository.existsById(id)){
             new RuntimeException("Professor não encontrado");
         }
 
         Professor professor = new Professor(professorRequest.nome(), professorRequest.cpf(), professorRequest.turmas(), professorRequest.disciplinas());
         professor.setId(id);
-        return professorRepository.save(professor);
+        professorRepository.save(professor);
+        return professorMapper.to(professor);
     }
 
     public void delete(String id){

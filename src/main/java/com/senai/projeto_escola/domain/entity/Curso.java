@@ -21,10 +21,11 @@ public class Curso {
     @NotNull(message = "carga_horaria não pode ser nulo")
     private Integer carga_horaria;
     @MapsId("alunoId")
-    private List<String> alunoId = new ArrayList<>();
+    private List<String> alunoId;
 
     public Curso(String titulo, Integer carga_horaria) {
         this.titulo = titulo;
         this.carga_horaria = carga_horaria;
+        this.alunoId = new ArrayList<>();
     }
 }
