@@ -6,13 +6,13 @@ public record AlunoResponse (
         String id,
         String nome,
         String cpf,
-        Curso curso,
+        CursoAlunoResponse curso,
         String turma
 )
 {
-    //    public static AlunoRequest fromEntity(Aluno aluno){
+    //    public static AlunoResponse fromEntity(Aluno aluno){
 //        if(aluno == null) return null;
-//        return new AlunoRequest(
+//        return new AlunoResponse(
 //                aluno.getNome(),
 //                aluno.getCpf(),
 //                aluno.getCurso() != null ? aluno.getCurso().getId() : null,
@@ -20,7 +20,7 @@ public record AlunoResponse (
 //        );
 //    }
 
-//    public Aluno toEntity(AlunoRequest alunoRequest){
+//    public Aluno toEntity(AlunoResponse alunoResponse){
 //        Aluno aluno = new Aluno();
 //        aluno.setNome(this.nome);
 //        aluno.setCpf(this.cpf);

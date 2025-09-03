@@ -6,6 +6,7 @@ import com.senai.projeto_escola.domain.entity.Aluno;
 import com.senai.projeto_escola.domain.entity.Curso;
 import com.senai.projeto_escola.domain.repository.AlunoRepository;
 import com.senai.projeto_escola.application.dto.AlunoRequest;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,16 +34,18 @@ public class AlunoService {
                 curso,
                 alunoRequest.turma()
         );
-        Aluno addAluno = alunoRepository.save(aluno);
-        cursoService.addAluno(curso, addAluno.getId());
+        alunoRepository.save(aluno);
+        cursoService.addAluno(curso, aluno);
         return alunoMapper.to(aluno);
     }
 
+    @Transactional(readOnly = true)
     public List<AlunoResponse> getAll(){
         List<Aluno> aluno = alunoRepository.findAll();
         return alunoMapper.to(aluno);
     }
 
+    @Transactional(readOnly = true)
     public AlunoResponse getAluno(String id){
         Aluno aluno = alunoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));

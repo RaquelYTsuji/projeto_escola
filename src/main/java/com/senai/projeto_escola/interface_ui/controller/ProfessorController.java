@@ -2,7 +2,6 @@ package com.senai.projeto_escola.interface_ui.controller;
 
 import com.senai.projeto_escola.application.dto.ProfessorResponse;
 import com.senai.projeto_escola.application.service.ProfessorService;
-import com.senai.projeto_escola.domain.entity.Professor;
 import com.senai.projeto_escola.application.dto.ProfessorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

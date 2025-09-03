@@ -2,7 +2,6 @@ package com.senai.projeto_escola.interface_ui.controller;
 
 import com.senai.projeto_escola.application.dto.AlunoResponse;
 import com.senai.projeto_escola.application.service.AlunoService;
-import com.senai.projeto_escola.domain.entity.Aluno;
 import com.senai.projeto_escola.application.dto.AlunoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -8,6 +8,7 @@ import com.senai.projeto_escola.application.dto.CursoRequest;
 import com.senai.projeto_escola.application.dto.CursoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,11 +26,13 @@ public class CursoService {
         return cursoMapper.to(curso);
     }
 
+    @Transactional(readOnly = true)
     public List<CursoResponse> getAll(){
         List<Curso> cursos = cursoRepository.findAll();
         return cursoMapper.to(cursos);
     }
 
+    @Transactional(readOnly = true)
     public CursoResponse getCurso(String id){
         Curso curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Curso não encontrado"));
@@ -60,13 +63,12 @@ public class CursoService {
                 .orElseThrow(() -> new RuntimeException("Curso não encontrado"));
     }
 
-    public CursoResponse addAluno(Curso curso, String alunoId){
-        if(curso.getAlunoId() == null){
-            curso.getAlunoId().set(0, alunoId);
+    public Curso addAluno(Curso curso, Aluno aluno){
+        if(curso.getAlunos() == null){
+            curso.getAlunos().set(0, aluno);
         } else {
-            curso.getAlunoId().add(alunoId);
+            curso.getAlunos().add(aluno);
         }
-        cursoRepository.save(curso);
-        return cursoMapper.to(curso);
+        return cursoRepository.save(curso);
     }
 }

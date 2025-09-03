@@ -6,6 +6,6 @@ public record CursoResponse(
         String id,
         String titulo,
         Integer carga_horaria,
-        List<String> alunoId
+        List<AlunoResponse> alunos
 )
 {}

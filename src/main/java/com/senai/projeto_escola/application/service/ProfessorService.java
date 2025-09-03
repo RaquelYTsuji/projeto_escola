@@ -7,6 +7,7 @@ import com.senai.projeto_escola.domain.repository.ProfessorRepository;
 import com.senai.projeto_escola.application.dto.ProfessorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,11 +30,13 @@ public class ProfessorService {
         return professorMapper.to(professor);
     }
 
+    @Transactional(readOnly = true)
     public List<ProfessorResponse> getAll(){
         List<Professor> professores = professorRepository.findAll();
         return professorMapper.to(professores);
     }
 
+    @Transactional(readOnly = true)
     public ProfessorResponse getProfessor(String id){
         Professor professor = professorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado"));

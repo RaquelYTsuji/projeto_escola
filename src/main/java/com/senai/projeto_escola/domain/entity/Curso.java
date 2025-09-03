@@ -20,12 +20,12 @@ public class Curso {
     private String titulo;
     @NotNull(message = "carga_horaria não pode ser nulo")
     private Integer carga_horaria;
-    @MapsId("alunoId")
-    private List<String> alunoId;
+    @OneToMany(mappedBy = "curso")
+    private List<Aluno> alunos;
 
     public Curso(String titulo, Integer carga_horaria) {
         this.titulo = titulo;
         this.carga_horaria = carga_horaria;
-        this.alunoId = new ArrayList<>();
+        this.alunos = new ArrayList<>();
     }
 }
