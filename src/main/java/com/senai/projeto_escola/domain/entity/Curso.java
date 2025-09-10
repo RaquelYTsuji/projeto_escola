@@ -18,14 +18,14 @@ public class Curso {
     private String id;
     @NotBlank(message = "titulo não pode ser vazio")
     private String titulo;
-    @NotNull(message = "carga_horaria não pode ser nulo")
-    private Integer carga_horaria;
+    @NotNull(message = "cargaHoraria não pode ser nulo")
+    private Integer cargaHoraria;
     @OneToMany(mappedBy = "curso")
     private List<Aluno> alunos;
 
-    public Curso(String titulo, Integer carga_horaria) {
+    public Curso(String titulo, Integer cargaHoraria) {
         this.titulo = titulo;
-        this.carga_horaria = carga_horaria;
+        this.cargaHoraria = cargaHoraria;
         this.alunos = new ArrayList<>();
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 public record CursoResponse(
         String id,
         String titulo,
-        Integer carga_horaria,
+        Integer cargaHoraria,
         List<AlunoResponse> alunos
 )
 {}

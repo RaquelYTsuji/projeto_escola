@@ -15,7 +15,7 @@ public record AlunoResponse (
 //        return new AlunoResponse(
 //                aluno.getNome(),
 //                aluno.getCpf(),
-//                aluno.getCurso() != null ? aluno.getCurso().getId() : null,
+//                aluno.getCurso() != null ? aluno.getCurso().getId() : null, //se fosse uma lista, trocar null por List.of()
 //                aluno.getTurma()
 //        );
 //    }
@@ -26,7 +26,7 @@ public record AlunoResponse (
 //        aluno.setCpf(this.cpf);
 //        aluno.setTipo(UsuarioTipo.aluno);
 //        aluno.setTurma(this.turma);
-//        aluno.setCurso(curso);
+//        aluno.setCurso(curso); //se fosse uma lista: aluno.setCursos(this.cursos != null ? new ArrayList<>(this.cursos) : new ArrayList<>());
 //        return aluno;
 //    }
 }

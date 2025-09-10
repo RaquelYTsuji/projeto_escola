@@ -13,15 +13,19 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class CursoService {
-    @Autowired
-    private CursoRepository cursoRepository;
+    private final CursoRepository cursoRepository;
+
+    public CursoService(CursoRepository cursoRepository) {
+        this.cursoRepository = cursoRepository;
+    }
 
     @Autowired
     private CursoMapper cursoMapper;
 
     public CursoResponse create(CursoRequest cursoRequest){
-        Curso curso = new Curso(cursoRequest.titulo(), cursoRequest.carga_horaria());
+        Curso curso = new Curso(cursoRequest.titulo(), cursoRequest.cargaHoraria());
         cursoRepository.save(curso);
         return cursoMapper.to(curso);
     }
@@ -44,7 +48,7 @@ public class CursoService {
             new RuntimeException("Curso não encontrado");
         }
 
-        Curso curso = new Curso(cursoRequest.titulo(), cursoRequest.carga_horaria());
+        Curso curso = new Curso(cursoRequest.titulo(), cursoRequest.cargaHoraria());
         curso.setId(id);
         cursoRepository.save(curso);
         return cursoMapper.to(curso);
